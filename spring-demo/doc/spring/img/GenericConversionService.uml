@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.core.convert.support.GenericConversionService</OriginalElement>
+  <nodes>
+    <node x="254.00000000000003" y="106.0">org.springframework.core.convert.support.ConfigurableConversionService</node>
+    <node x="0.0" y="424.0">org.springframework.format.support.DefaultFormattingConversionService</node>
+    <node x="54.00000000000003" y="0.0">org.springframework.core.convert.converter.ConverterRegistry</node>
+    <node x="276.5" y="212.0">org.springframework.core.convert.support.GenericConversionService</node>
+    <node x="31.50000000000003" y="318.0">org.springframework.format.support.FormattingConversionService</node>
+    <node x="385.25" y="0.0">org.springframework.core.convert.ConversionService</node>
+    <node x="342.5" y="318.0">org.springframework.core.convert.support.DefaultConversionService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.core.convert.support.ConfigurableConversionService" target="org.springframework.core.convert.ConversionService">
+      <point x="77.25" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.core.convert.support.DefaultConversionService" target="org.springframework.core.convert.support.GenericConversionService">
+      <point x="0.0" y="-28.0" />
+      <point x="66.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.format.support.FormattingConversionService" target="org.springframework.core.convert.support.GenericConversionService">
+      <point x="72.74999999999997" y="-28.0" />
+      <point x="249.75" y="293.0" />
+      <point x="342.5" y="293.0" />
+      <point x="-66.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.core.convert.support.ConfigurableConversionService" target="org.springframework.core.convert.converter.ConverterRegistry">
+      <point x="-77.25" y="-28.0" />
+      <point x="331.25" y="81.0" />
+      <point x="204.75000000000003" y="81.0" />
+      <point x="50.25" y="28.0" />
+    </edge>
+    <edge source="org.springframework.format.support.DefaultFormattingConversionService" target="org.springframework.format.support.FormattingConversionService">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.core.convert.support.GenericConversionService" target="org.springframework.core.convert.support.ConfigurableConversionService">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.format.support.FormattingConversionService" target="org.springframework.core.convert.converter.ConverterRegistry">
+      <point x="-72.75000000000003" y="-28.0" />
+      <point x="-50.25" y="28.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="211.0" y="230.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

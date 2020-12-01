@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.config.PropertyOverrideConfigurer</OriginalElement>
+  <nodes>
+    <node x="790.1785714285716" y="0.0">org.springframework.core.Ordered</node>
+    <node x="415.91071428571433" y="106.0">org.springframework.beans.factory.config.BeanFactoryPostProcessor</node>
+    <node x="248.00000000000006" y="106.0">org.springframework.beans.factory.Aware</node>
+    <node x="754.1785714285716" y="106.0">org.springframework.core.PriorityOrdered</node>
+    <node x="704.6785714285716" y="212.0">org.springframework.beans.factory.config.PropertyResourceConfigurer</node>
+    <node x="361.67857142857156" y="318.0">org.springframework.beans.factory.config.PlaceholderConfigurerSupport</node>
+    <node x="438.41071428571433" y="0.0">java.lang.FunctionalInterface</node>
+    <node x="775.1785714285717" y="318.0">org.springframework.beans.factory.config.PropertyOverrideConfigurer</node>
+    <node x="0.0" y="212.0">org.springframework.context.EnvironmentAware</node>
+    <node x="444.5178571428572" y="212.0">org.springframework.beans.factory.BeanFactoryAware</node>
+    <node x="127.17857142857156" y="424.0">org.springframework.context.support.PropertySourcesPlaceholderConfigurer</node>
+    <node x="212.00000000000006" y="212.0">org.springframework.beans.factory.BeanNameAware</node>
+    <node x="957.1785714285716" y="106.0">org.springframework.core.io.support.PropertiesLoaderSupport</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.config.PropertyOverrideConfigurer" target="org.springframework.beans.factory.config.PropertyResourceConfigurer">
+      <point x="-1.1368683772161603E-13" y="-28.0" />
+      <point x="70.5" y="28.0" />
+    </edge>
+    <edge source="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" target="org.springframework.context.EnvironmentAware">
+      <point x="-93.0" y="-28.0" />
+      <point x="220.17857142857156" y="399.0" />
+      <point x="96.00000000000006" y="399.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.beans.factory.config.BeanFactoryPostProcessor">
+      <point x="-94.0" y="-28.0" />
+      <point x="751.6785714285716" y="187.0" />
+      <point x="547.9107142857143" y="187.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanFactoryPostProcessor" target="java.lang.FunctionalInterface">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.BeanNameAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PlaceholderConfigurerSupport" target="org.springframework.beans.factory.BeanNameAware">
+      <point x="-100.0" y="-28.0" />
+      <point x="411.67857142857156" y="293.0" />
+      <point x="294.50000000000006" y="293.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PlaceholderConfigurerSupport" target="org.springframework.beans.factory.config.PropertyResourceConfigurer">
+      <point x="100.0" y="-28.0" />
+      <point x="611.6785714285716" y="293.0" />
+      <point x="775.1785714285716" y="293.0" />
+      <point x="-70.5" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.core.io.support.PropertiesLoaderSupport">
+      <point x="94.0" y="-28.0" />
+      <point x="939.6785714285716" y="187.0" />
+      <point x="1084.6785714285716" y="187.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.context.EnvironmentAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-28.0" />
+      <point x="96.0" y="187.0" />
+      <point x="263.50000000000006" y="187.0" />
+      <point x="-31.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.core.PriorityOrdered" target="org.springframework.core.Ordered">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PropertyResourceConfigurer" target="org.springframework.core.PriorityOrdered">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.PlaceholderConfigurerSupport" target="org.springframework.beans.factory.BeanFactoryAware">
+      <point x="0.0" y="-28.0" />
+      <point x="511.67857142857156" y="293.0" />
+      <point x="540.5178571428572" y="293.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.BeanFactoryAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-28.0" />
+      <point x="540.5178571428572" y="187.0" />
+      <point x="325.50000000000006" y="187.0" />
+      <point x="31.0" y="28.0" />
+    </edge>
+    <edge source="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" target="org.springframework.beans.factory.config.PlaceholderConfigurerSupport">
+      <point x="93.0" y="-28.0" />
+      <point x="406.17857142857156" y="399.0" />
+      <point x="511.67857142857156" y="399.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="563.5" y="244.5" />
+  <SelectedNodes>
+    <node>org.springframework.beans.factory.config.PropertyResourceConfigurer</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
