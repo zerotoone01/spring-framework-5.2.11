@@ -113,6 +113,18 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.BeanPostProcessor#postProcessAfterInitialization
  * @see DisposableBean#destroy
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
+ *
+ * BeanFactory 作为最顶层的一个接口类，定义了 IoC 容器的基本功能规范，BeanFacto可
+ * 有三个重要的子类 ： ListableBeanFactory、 HierarchicalBeanFactory 和 AutowireCapableBeanFactory 。
+ * 但是从类图中我们可以发现最终的默认实现类是 DefaultListableBeanFactory，它实现了所有的接口 。
+ * 那么为何要定义这么多层次的接口呢？查阅这些接口的源码和说明发现，每个接口都有它的使用场合，
+ * 主要是为了区分在 Spring 内部操作过程中对象的传递和转化，对对象的数据访问所做的限制。
+ *
+ * 在 BeanFactory 里只对 IoC 容器的基本行为做了定义，根本不关心你的 Bean 是如何定义及怎样加载的。
+ * 要知道工厂是如何产生对象的，我们需要看具体的 IoC 容器实现 ， Spring 提供了许多 IoC 容器实现，比如 GenericApplicationContext、 ClasspathXmlApplicationContext 等。
+ *
+ * @see FactoryBean
+ *
  */
 public interface BeanFactory {
 
@@ -121,6 +133,8 @@ public interface BeanFactory {
 	 * beans <i>created</i> by the FactoryBean. For example, if the bean named
 	 * {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject}
 	 * will return the factory, not the instance returned by the factory.
+	 * ／／对 FactoryBean 的转义定义，因为如果使用 Bean 的名字检索 FactoryBean 得到的对象是工厂生成的对象
+	 * ／／如果需要得到工厂本身，需要转义
 	 */
 	String FACTORY_BEAN_PREFIX = "&";
 
@@ -136,6 +150,8 @@ public interface BeanFactory {
 	 * @return an instance of the bean
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the specified name
 	 * @throws BeansException if the bean could not be obtained
+	 *
+	 * ／／根据 Bean 的名字 ， 获取在 IoC 容器中得到的 Bean 实例
 	 */
 	Object getBean(String name) throws BeansException;
 

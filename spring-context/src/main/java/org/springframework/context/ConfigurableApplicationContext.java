@@ -175,6 +175,9 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 * @throws BeansException if the bean factory could not be initialized
 	 * @throws IllegalStateException if already initialized and multiple refresh
 	 * attempts are not supported
+	 *
+	 * Spring IoC 容器对 Bean 配置资源的载入是从 refresh（）方法开始 的 。
+	 * refresh（）方法是一个模板方法，规定了 IoC 容器的启动流程，有些逻辑要交给其子类实现。
 	 */
 	void refresh() throws BeansException, IllegalStateException;
 

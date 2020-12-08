@@ -58,6 +58,7 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.BeanFactoryAware
  * @see org.springframework.beans.factory.config.ConfigurableListableBeanFactory
  * @see org.springframework.context.ApplicationContext#getAutowireCapableBeanFactory()
+ * AutowireCapableBeanFactory 接口定义 Bean 的自动装配规则
  */
 public interface AutowireCapableBeanFactory extends BeanFactory {
 
