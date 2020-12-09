@@ -47,6 +47,12 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("serial")
 public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializable {
 
+	/**
+	 * 从提供的配置实例 config 中获取 Advisor列衰，遍历处理这些 Advisor。
+	 * 如果是 IntroductionAdvisor，则判断此 Advisor能否应用到目标类 targetClass 上。
+	 * 如果是 PointcutAdvisor，则判断此 Advisor 能否应用到目标方法 Method 上 。
+	 * 将满足条件的 Advisor通过 AdvisorAdaptor转化成拦载器列表返回 。
+	 */
 	@Override
 	public List<Object> getInterceptorsAndDynamicInterceptionAdvice(
 			Advised config, Method method, @Nullable Class<?> targetClass) {

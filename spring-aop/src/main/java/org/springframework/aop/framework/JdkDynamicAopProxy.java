@@ -113,6 +113,11 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 		return getProxy(ClassUtils.getDefaultClassLoader());
 	}
 
+	/**
+	 * 获取代理类要实现的接口，除了 Advised 对象中配置的，还会加上 Spr、ingProxy 、 Advised( opaque=false)
+	 * 检查得到的接口中有没有定义 equals 或者 hashcode 的接口
+	 * 调用 Proxy.newProxyInstance() 方法创建代理对象
+	 */
 	@Override
 	public Object getProxy(@Nullable ClassLoader classLoader) {
 		if (logger.isTraceEnabled()) {
@@ -173,6 +178,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 				// There is only getDecoratedClass() declared -> dispatch to proxy config.
 				return AopProxyUtils.ultimateTargetClass(this.advised);
 			}
+			//直接反射调用 Advised 接口或者其父接口中定义的方法，不应用通知
 			else if (!this.advised.opaque && method.getDeclaringClass().isInterface() &&
 					method.getDeclaringClass().isAssignableFrom(Advised.class)) {
 				// Service invocations on ProxyConfig with the proxy config...
@@ -193,10 +199,16 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 			Class<?> targetClass = (target != null ? target.getClass() : null);
 
 			// Get the interception chain for this method.
+			//获取可以应用到此方法上的拦截器列表
+
+			//主要实现思路为： 先获取应用到此方法上的拦截器链(Interceptor Chain)。如果有拦截器，
+			//则应用拦截器，并执行连接点 (JoinPoint); 如果没有拦截器，则直接反射执行连接点。
+			//这里的关键是拦截器链是如何获取的，以及它又是如何执行的。
 			List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
 
 			// Check whether we have any advice. If we don't, we can fallback on direct
 			// reflective invocation of the target, and avoid creating a MethodInvocation.
+			//如果没有可以应用到此方法上的拦截器，则直接反射调用 Method.invoke(target, args)
 			if (chain.isEmpty()) {
 				// We can skip creating a MethodInvocation: just invoke the target directly
 				// Note that the final invoker must be an InvokerInterceptor so we know it does
@@ -205,6 +217,7 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
 				retVal = AopUtils.invokeJoinpointUsingReflection(target, method, argsToUse);
 			}
 			else {
+				//创建 ReflectiveMethodInvocation
 				// We need to create a method invocation...
 				MethodInvocation invocation =
 						new ReflectiveMethodInvocation(proxy, target, method, args, targetClass, chain);
