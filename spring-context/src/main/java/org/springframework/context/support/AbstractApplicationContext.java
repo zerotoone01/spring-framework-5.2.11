@@ -532,6 +532,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Tell the subclass to refresh the internal bean factory.
 			//2. 告诉子类启动 RefreshBeanFactory() 方法， Bean 定义资源文件的载入从子类的RefreshBeanFactory() 方法启动
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+			// obtainFreshBeanFactory()方法执行完毕后，只是创建了IoC容器，并没有进行实例化，真正创建Bean实例，是在调用了 getBean() 之后才会被实例化
+			//org.springframework.beans.factory.support.AbstractBeanFactory.getBean
 
 			// Prepare the bean factory for use in this context.
 			//3.为 Bean Factory 配置容器特性，例如类加载器、事件处理器等
@@ -874,6 +876,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Finish the initialization of this context's bean factory,
 	 * initializing all remaining singleton beans.
+	 *
+	 * 对配置了 lazy-in it 属性的 Bean 进行预实例化处理
 	 */
 	protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
 		// Initialize conversion service for this context.
@@ -897,12 +901,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Stop using the temporary ClassLoader for type matching.
+		//为了使类型匹配，停止使用临时的类加载器
 		beanFactory.setTempClassLoader(null);
 
 		// Allow for caching all bean definition metadata, not expecting further changes.
+		//缓存 容器中所有注册的 BeanDefinition 元数据，以防被修改
 		beanFactory.freezeConfiguration();
 
 		// Instantiate all remaining (non-lazy-init) singletons.
+		//对配置了 lazy-init 属性的单例模式的 Bean 进行预实例化处理
 		beanFactory.preInstantiateSingletons();
 	}
 
