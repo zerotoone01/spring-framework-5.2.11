@@ -63,6 +63,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 		Advisor[] advisors = config.getAdvisors();
 		List<Object> interceptorList = new ArrayList<>(advisors.length);
 		Class<?> actualClass = (targetClass != null ? targetClass : method.getDeclaringClass());
+		//查看是否包含 IntroductionAdvisor
 		Boolean hasIntroductions = null;
 
 		for (Advisor advisor : advisors) {
@@ -70,6 +71,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 				// Add it conditionally.
 				PointcutAdvisor pointcutAdvisor = (PointcutAdvisor) advisor;
 				if (config.isPreFiltered() || pointcutAdvisor.getPointcut().getClassFilter().matches(actualClass)) {
+					//检查当前 Advisor 的切入点是否可以匹配当前方法
 					MethodMatcher mm = pointcutAdvisor.getPointcut().getMethodMatcher();
 					boolean match;
 					if (mm instanceof IntroductionAwareMethodMatcher) {
@@ -82,6 +84,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 						match = mm.matches(method, actualClass);
 					}
 					if (match) {
+						//将 Advisor 转化成 Interceptor
 						MethodInterceptor[] interceptors = registry.getInterceptors(advisor);
 						if (mm.isRuntime()) {
 							// Creating a new object instance in the getInterceptors() method
